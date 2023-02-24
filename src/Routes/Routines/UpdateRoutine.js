@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { updateRoutine } from "../../util/API";
 
 const UpdateRoutine = ({
+    getUserRoutines,
     userRoutines,
     setUserRoutines,
     id
@@ -11,7 +12,6 @@ const UpdateRoutine = ({
     const [goal, setGoal] = useState('');
     const [errorMessage, setErrorMessage] = useState("");
     const [token] = useOutletContext();
-
 
 
 async function submitUpdateForm (event) {
@@ -30,7 +30,7 @@ async function submitUpdateForm (event) {
       }
       setName("");
       setGoal("");
-      setUserRoutines(userRoutines)
+      getUserRoutines();
 } 
 
   return (

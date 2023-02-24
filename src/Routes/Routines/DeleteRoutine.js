@@ -3,9 +3,9 @@ import { deleteRoutine } from "../../util/API";
 
 const DeleteRoutine = ({
   userRoutines,
-  setUserRoutines,
   routines,
   setRoutines,
+  getUserRoutines,
   id,
 }) => {
   console.log(userRoutines, "routines");
@@ -20,7 +20,7 @@ const DeleteRoutine = ({
         (routine) => routine.id !== routineId.id
       );
       setRoutines(newRoutines);
-      setUserRoutines(userRoutines)
+      getUserRoutines();
     }
   };
 

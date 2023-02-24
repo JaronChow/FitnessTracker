@@ -5,45 +5,47 @@ import CreateActivities from "./CreateAcvities";
 import UpdateActivities from "./UpdateActivity";
 
 const Activities = () => {
-  const [activities, setActivites] = useState([]);
+  const [activities, setActivities] = useState([]);
   const [token] = useOutletContext();
 
   useEffect(() => {
-    const seeActivities = async () => {
-      const response = await getActivities();
-      setActivites(response);
-      console.log(response, "activities");
-    };
-    seeActivities();
+    getAllActivities();
   }, []);
 
+  const getAllActivities = async () => {
+    const response = await getActivities();
+    setActivities(response);
+    console.log(response)
+
+  };  
+  
   return (
     <div className="Activities">
       <h1> Activities </h1>
       {token && (
         <CreateActivities
           activities={activities}
-          setActivities={setActivites}
+          setActivities={setActivities}
           token={token}
         />
       )}
-      <ul>
+      <div>
         {activities.map(({ id, name, description }) => (
-          <div key={id} className="activityList">
+          <div key = {id} className="activityList">
             <li>
               <h2> Name: {name}</h2>
               <ul>Description: {description} </ul>
               {token && 
                 <UpdateActivities
                   activities={activities}
-                  setActivities={setActivites}
+                  getAllActivities ={getAllActivities}
                   id = {id}
                 />
               }
             </li>
           </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

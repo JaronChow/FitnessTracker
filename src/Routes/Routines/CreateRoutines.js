@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 import { postRoutines } from "../../util/API";
 
-const CreateRoutines = ({ routines, setRoutines, userRoutines,setUserRoutines }) => {
+const CreateRoutines = ({
+  getUserRoutines
+}) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(true);
@@ -12,21 +14,24 @@ const CreateRoutines = ({ routines, setRoutines, userRoutines,setUserRoutines })
   async function submitForm(event) {
     event.preventDefault();
 
-    const routine = { name, goal, isPublic };
+    const routine = {
+      name,
+      goal,
+      isPublic,
+    };
     if (!name || !goal) {
       setErrorMessage("Please enter all fields");
     }
     const response = await postRoutines(token, routine);
-    response.activities = [];
-    console.log(routine, response, "routine");
-    if (response.error) {
+      response.activities = [];
+    if (response){
+        getUserRoutines();
+    }else if(response.error) {
       setErrorMessage(
         `A routine with the name "${name}" already exists. Please enter a new routine name`
       );
     } else {
       setErrorMessage("");
-      setRoutines([...routines, response]);
-      setUserRoutines(userRoutines)
     }
 
     setName("");

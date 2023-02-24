@@ -14,20 +14,19 @@ const UserRoutines = () => {
 
     useEffect(() => {
         if(username){
-            const getUserRoutines = async () => {
-            const routines = await getRoutinesByUser(username);
-            setUserRoutines(routines);
-                console.log(routines,username,userRoutines, 'username')
-            };
             getUserRoutines();
         }
-        setUserRoutines(userRoutines)
-
       }, [token,username]);
+
+      const getUserRoutines = async () => {
+        const routines = await getRoutinesByUser(username);
+        setUserRoutines(routines);
+            console.log(routines,username,userRoutines, 'username')
+        };
 
     return(
         <div>
-        {token && <CreateRoutines routines={routines} setRoutines={setRoutines} token={token} userRoutines = {userRoutines} setUserRoutines = {setUserRoutines}  />}
+        {token && <CreateRoutines getUserRoutines = {getUserRoutines} />}
        <ul>
             {userRoutines.map(({ id, name, goal, creatorName, activities}) => (
                 <div key={id} >   
@@ -50,9 +49,9 @@ const UserRoutines = () => {
                         </ul>
                     </li>
                     <div>
-                    <UpdateRoutine routines={routines} setRoutines={setRoutines} token={token} userRoutines ={userRoutines} setUserRoutines ={setUserRoutines} id={id}   />
+                    <UpdateRoutine getUserRoutines = {getUserRoutines} userRoutines ={userRoutines} setUserRoutines ={setUserRoutines} id={id}   />
                     </div>
-                    <DeleteRoutine routines={routines} setRoutines={setRoutines} token={token} userRoutines ={userRoutines} setUserRoutines ={setUserRoutines} id={id} />
+                    <DeleteRoutine getUserRoutines = {getUserRoutines} setRoutines = {setRoutines} userRoutines ={userRoutines} setUserRoutines ={setUserRoutines} id={id} />
                 </div>
             ))}
         </ul>       

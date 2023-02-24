@@ -57,7 +57,7 @@ export async function getRoutinesByUser(username) {
   return data;
 }
 
-export async function getAllRoutines() {
+export async function getRoutines() {
   const response = await fetch(`${BASE_URL}/routines`, {
     headers: {
       "Content-Type": "application/json",
@@ -115,43 +115,15 @@ export async function postRoutines(token, routine) {
   }
 }
 
-export async function updateActivitiesById(token, activityId, updatedActivity) {
+export async function updateActivitiesById(token, id, updatedActivity) {
   try {
-    const response = await fetch(`${BASE_URL}/activities/${activityId}`, {
+    const response = await fetch(`${BASE_URL}/activities/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(updatedActivity),
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function getActivitiesById(id, activity) {
-  try {
-    const response = await fetch(`${BASE_URL}/activities/${id}/routines`, {
-      body: JSON.stringify(activity),
-    });
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function deleteRoutine(token, routineId) {
-  try {
-    const response = await fetch(`${BASE_URL}/routines/${routineId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
     });
     const data = await response.json();
     return data;
@@ -177,6 +149,38 @@ export async function updateRoutine(token, routine, routineId) {
     console.log(error);
   }
 }
+
+export async function getActivitiesById(id, activity) {
+  try {
+    const response = await fetch(`${BASE_URL}/activities/${id}/routines`, {
+      body: JSON.stringify(activity),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
+export async function deleteRoutine(token, routineId) {
+  try {
+    const response = await fetch(`${BASE_URL}/routines/${routineId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 
 export async function addActivityToRoutine(routineId, routineActivity, token) {
   try {

@@ -1,24 +1,15 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import { getAllRoutines, addActivityToRoutine } from "../../util/API";
+import { getRoutines } from "../../util/API";
 import { isLoggedIn } from "../../util/API";
 import jwt_decode from "jwt-decode";
 
 const Routines = () => {
   const [routines, setRoutines] = useState([]);
-  const [activityId, setActivityId] = useState("");
-  const [count, setCount] = useState("");
-  const [duration, setDuration] = useState("");
   const [username, setUsername] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
   const [token] = useOutletContext();
 
   useEffect(() => {
-    const seeRoutines = async () => {
-      const response = await getAllRoutines();
-      setRoutines(response);
-      console.log(response, "routines");
-    };
     const seeId = async (token) => {
       const response = await isLoggedIn(token);
     };
@@ -27,32 +18,16 @@ const Routines = () => {
       setUsername(decodedToken.username);
       seeId(token);
     }
-    seeRoutines();
+    getAllRoutines();
+
   }, [username, token]);
 
-  const attachActivity = async (event, routineId) => {
-    console.log(routineId);
-    event.preventDefault();
-    const routineActivity = {
-      activityId,
-      count,
-      duration,
-    };
-    const response = await addActivityToRoutine(
-      routineId.id,
-      token,
-      routineActivity
-    );
-    console.log(response);
-    if (!duration || !count) {
-      setErrorMessage("Please enter all fields");
-    } else {
-      setErrorMessage("");
-      setRoutines([...routines, response]);
-    }
-    setCount("");
-    setDuration("");
+  const getAllRoutines = async () => {
+    const response = await getRoutines();
+    setRoutines(response);
+    console.log(response, "routines");
   };
+
 
   return (
     <div className="Routines">

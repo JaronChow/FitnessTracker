@@ -2,37 +2,31 @@ import { useState } from 'react';
 import { updateActivitiesById } from '../../util/API';
 import { useOutletContext } from 'react-router-dom';
 
-const UpdateActivities = ({id}) =>{
+const UpdateActivities = ({getAllActivities,id}) =>{
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [token] = useOutletContext();
 
-    async function updateActivityForm (event) {
+    async function submitUpdateForm (event) {
         event.preventDefault();
         const updatedActivity = { 
                 name,
                 description 
             };
-            console.log("updated activity",updatedActivity)
-
-        const response = await updateActivitiesById(token,updatedActivity,id);
-
-            console.log(response,'response')
-
-
-        if(!name || !description){
+        const response = await updateActivitiesById(token, id, updatedActivity);
+        if (response) {
+            getAllActivities()
+            setName('');
+            setDescription('');
+        }else if(!name || !description){
             setErrorMessage('Please enter all fields')
-        }else {
-            setErrorMessage('')
         }
-        setName('');
-        setDescription('');
     }
 
     return(
         <div>
-        <form onSubmit = { updateActivityForm }>
+        <form onSubmit = { submitUpdateForm }>
             <input 
                 type ='text'
                 placeholder='Activity Name'
