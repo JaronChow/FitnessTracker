@@ -6,17 +6,14 @@ import DeleteRoutine from './Routines/DeleteRoutine';
 import UpdateRoutine from './Routines/UpdateRoutine';
 import jwt_decode from 'jwt-decode'
 
-const UserRoutines = () => {
-    const [routines, setRoutines] = useState([]);
+const UserRoutines = ({setRoutines}) => {
     const [userRoutines, setUserRoutines] = useState([])
     const [token] = useOutletContext();
     const { username } = jwt_decode(token)
 
     useEffect(() => {
-        if(username){
-            getUserRoutines();
-        }
-      }, [token,username]);
+        getUserRoutines();
+      });
 
       const getUserRoutines = async () => {
         const routines = await getRoutinesByUser(username);

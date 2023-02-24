@@ -1,26 +1,13 @@
 import { useEffect, useState } from "react";
-import { useOutletContext } from "react-router-dom";
 import { getRoutines } from "../../util/API";
-import { isLoggedIn } from "../../util/API";
-import jwt_decode from "jwt-decode";
 
 const Routines = () => {
   const [routines, setRoutines] = useState([]);
-  const [username, setUsername] = useState("");
-  const [token] = useOutletContext();
 
   useEffect(() => {
-    const seeId = async (token) => {
-      const response = await isLoggedIn(token);
-    };
-    if (token) {
-      const decodedToken = jwt_decode(token);
-      setUsername(decodedToken.username);
-      seeId(token);
-    }
     getAllRoutines();
 
-  }, [username, token]);
+  }, []);
 
   const getAllRoutines = async () => {
     const response = await getRoutines();
