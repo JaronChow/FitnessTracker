@@ -1,38 +1,230 @@
+body{
+  background-color: black;
+  color:rgb(255, 255, 255);
+}
+button{
+  background-color:#0067de;
+  color:white;
+  margin:20px;
+  padding:10px;
+  border-radius: 20px;
+  border:none;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  text-align: center;
+}
+input{
+  margin:5px;
+  padding:10px;
+  border-radius: 20px;
+  border:none;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  text-align: center;
+  width:20vw;
+}
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.workout-img{
+  height: 100%;
+  width: 100%;
+}
+.homeTitle{
+  display:flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding:30px;
+  flex-direction: row;
+  background-color: rgb(30, 31, 33);
+  align-items: center;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 20px;
+  border-radius: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.homeTitle nav a{
+  margin :0 10px 0 10px;
+  padding: 10px;
+  text-decoration: none;
+  color:rgb(255, 255, 255);
+  box-shadow: 1px 1px 1px 1px ;
+  border-radius: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.TITLE {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 50px;
+  text-decoration: none;
+  color:rgb(255, 255, 255);
+}
+
+li {
+  list-style: none;
+}
+ul{
+  padding:10px;
+}
+
+.registerbox{
+  display: flex;
+  flex-direction:column ;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginbox{
+  display: flex;
+  flex-direction:column ;
+  align-items: center;
+  align-content: center;
+}
+
+.login {
+  padding:20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  margin: 20px ;
+}
+.login.title{
+  font-size: 400;
+}
+
+
+.loginForm input {
+  margin:20px;
+  padding:12px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border:none;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  text-align: center;
+  width:20vw;
+}
+.loginForm button{
+  align-items: center;
+  border-radius: 20px;
+  padding:10px 20px;
+  font-size: 15px;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  border:none;
+  font-weight: 100;
+}
+
+
+.register {
+  padding:20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  margin: 20px ;
+  width: 30vw;
+}
+
+
+.register.title{
+  font-size: 400;
+}
+
+.registerForm button{
+  align-items: center;
+  border-radius: 20px;
+  padding:10px 20px;
+  font-size: 15px;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  border:none;
+  font-weight: 100;
+}
+.registerForm input {
+  display: flex;
+  flex-direction: column;
+  margin:20px;
+  padding:12px;
+  border-radius: 20px;
+  border:none;
+  box-shadow: 1px 1px 2px 2px #b2b1b1;
+  text-align: center;
+  width: 20vw;
+}
+
+.registerForm p {
+  display:flex;
+  align-items: center;
+}
+
+
+.Routines {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 30px;
+  border-radius:10px;
+  box-shadow: 1px 1px 1px 2px;  
+  height: 100vh;
+  overflow-y: auto;
 }
 
-.App-link {
-  color: #61dafb;
+.Routines ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Routines li {
+  list-style: none;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 1px ;
+  margin: 10px 0px 30px;
+  padding:10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.routine-list {
+  width: 400px;
+}
+
+.routinesList{
+  font-size: 17px;
+}
+
+.Activities{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+  border-radius:10px;
+  box-shadow: 1px 1px 1px 2px;  
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.Activities ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Activities li {
+  list-style: none;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 1px ;
+  margin: 10px 0px 30px;
+  padding:20px;
+}
+
+.activitiessList{
+  font-size: 17px;
+}
+
+.routine-activities-box {
+  margin:5px;
+  padding:5px;
+  width: 500px;
+  height: 250px;
+  overflow: auto;
 }
